@@ -8,7 +8,6 @@ export async function GET(req: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session)
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   await connectDB();
   const user = await User.findById(session.user.id).populate("wishlist");
   return NextResponse.json({ wishlist: user?.wishlist || [] });
