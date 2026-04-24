@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Grid, List, SlidersHorizontal, X } from "lucide-react";
 import { ProductCard } from "@/components/store/ProductCard";
@@ -17,7 +17,7 @@ const SORT_OPTIONS = [
   { value: "rating", label: "Top Rated" },
 ];
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -160,9 +160,9 @@ export default function ProductsPage() {
 
       <button
         onClick={() => router.push("/products")}
-        className="w-full btn-outline text-sm py-2"
+        className="w-full btn-outline text-sm py-2 flex items-center justify-center gap-1"
       >
-        <X className="w-4 h-4 mr-1" /> Clear Filters
+        <X className="w-4 h-4" /> Clear Filters
       </button>
     </div>
   );
@@ -217,19 +217,21 @@ export default function ProductsPage() {
       </div>
 
       <div className="flex gap-8">
+        {/* Desktop Sidebar */}
         <aside className="hidden lg:block w-64 flex-shrink-0">
           <div className="card p-5 sticky top-24">
             <FilterSidebar />
           </div>
         </aside>
 
+        {/* Mobile Filters */}
         {showFilters && (
           <div className="fixed inset-0 z-50 lg:hidden">
             <div
               className="absolute inset-0 bg-black/50"
               onClick={() => setShowFilters(false)}
             />
-            <div className="absolute left-0 top-0 h-full w-72 bg-white dark:bg-gray-800 p-6 overflow-y-auto animate-slide-in-right">
+            <div className="absolute left-0 top-0 h-full w-72 bg-white dark:bg-gray-800 p-6 overflow-y-auto animate-slide-up">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-bold text-gray-900 dark:text-white">
                   Filters
@@ -243,6 +245,7 @@ export default function ProductsPage() {
           </div>
         )}
 
+        {/* Products */}
         <div className="flex-1 min-w-0">
           {loading ? (
             <div
@@ -258,12 +261,12 @@ export default function ProductsPage() {
             </div>
           ) : products.length === 0 ? (
             <div className="text-center py-20">
-              <p className="text-gray-500 dark:text-gray-400 text-lg">
+              <p className="text-gray-500 dark:text-gray-400 text-lg mb-4">
                 No products found
               </p>
               <button
                 onClick={() => router.push("/products")}
-                className="mt-4 btn-primary"
+                className="btn-primary"
               >
                 Clear Filters
               </button>
@@ -294,5 +297,29 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-48 mb-6 animate-pulse" />
+          <div className="flex gap-8">
+            <div className="hidden lg:block w-64 flex-shrink-0">
+              <div className="card p-5 h-80 animate-pulse" />
+            </div>
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              {Array.from({ length: 9 }).map((_, i) => (
+                <ProductCardSkeleton key={i} />
+              ))}
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <ProductsContent />
+    </Suspense>
   );
 }
