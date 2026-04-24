@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -22,11 +22,9 @@ const stripePromise = loadStripe(
 
 function CheckoutForm({
   total,
-  discount,
   couponCode,
 }: {
   total: number;
-  discount: number;
   couponCode: string;
 }) {
   const stripe = useStripe();
@@ -150,7 +148,7 @@ function CheckoutForm({
           />
         </div>
         <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
-          Test: use card 4242 4242 4242 4242
+          Test card: 4242 4242 4242 4242 — any future date — any CVC
         </p>
       </div>
 
@@ -161,18 +159,32 @@ function CheckoutForm({
   );
 }
 
-export default function CheckoutPage() {
-  const { data: session } = useSession();
-  const { items } = useCartStore();
+// ✅ useSearchParams wrapped in its own component inside Suspense
+function CheckoutContent() {
   const searchParams = useSearchParams();
   const couponCode = searchParams.get("coupon") || "";
+  const { data: session } = useSession();
+  const { items } = useCartStore();
   const { subtotal, tax } = calculateCartTotals(items);
   const total = subtotal + tax;
 
-  if (!session)
-    return <div className="text-center py-20">Please sign in to checkout.</div>;
-  if (items.length === 0)
-    return <div className="text-center py-20">Your cart is empty.</div>;
+  if (!session) {
+    return (
+      <div className="text-center py-20">
+        <p className="text-gray-500 dark:text-gray-400">
+          Please sign in to checkout.
+        </p>
+      </div>
+    );
+  }
+
+  if (items.length === 0) {
+    return (
+      <div className="text-center py-20">
+        <p className="text-gray-500 dark:text-gray-400">Your cart is empty.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -182,7 +194,7 @@ export default function CheckoutPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <Elements stripe={stripePromise}>
-            <CheckoutForm total={total} discount={0} couponCode={couponCode} />
+            <CheckoutForm total={total} couponCode={couponCode} />
           </Elements>
         </div>
 
@@ -222,7 +234,7 @@ export default function CheckoutPage() {
                 <span>{formatPrice(subtotal)}</span>
               </div>
               <div className="flex justify-between text-gray-600 dark:text-gray-400">
-                <span>Tax</span>
+                <span>Tax (8%)</span>
                 <span>{formatPrice(tax)}</span>
               </div>
               <div className="flex justify-between font-bold text-gray-900 dark:text-white text-base pt-1">
@@ -234,5 +246,27 @@ export default function CheckoutPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// ✅ Suspense boundary yahan hai
+export default function CheckoutPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-32 mb-8 animate-pulse" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-4">
+              <div className="card p-6 h-64 animate-pulse" />
+              <div className="card p-6 h-32 animate-pulse" />
+            </div>
+            <div className="card p-5 h-64 animate-pulse" />
+          </div>
+        </div>
+      }
+    >
+      <CheckoutContent />
+    </Suspense>
   );
 }
