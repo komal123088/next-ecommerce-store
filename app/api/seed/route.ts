@@ -46,9 +46,7 @@ const PRODUCTS = [
     description:
       "Premium audio experience with active noise cancellation, 30-hour battery life, and comfortable over-ear design.",
     price: 299.99,
-    images: [
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600",
-    ],
+    images: ["https://picsum.photos/seed/headphones/600/600"],
     stock: 45,
     featured: true,
     category: "Electronics",
@@ -58,9 +56,7 @@ const PRODUCTS = [
     description:
       "Tactile mechanical switches with per-key RGB lighting, aluminum body, and USB-C connectivity.",
     price: 149.99,
-    images: [
-      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600",
-    ],
+    images: ["https://picsum.photos/seed/keyboard/600/600"],
     stock: 32,
     featured: false,
     category: "Electronics",
@@ -70,9 +66,7 @@ const PRODUCTS = [
     description:
       "Ultra HD 4K resolution webcam with built-in ring light and noise-cancelling microphone.",
     price: 199.99,
-    images: [
-      "https://images.unsplash.com/photo-1587826080692-f439cd0b70da?w=600",
-    ],
+    images: ["https://picsum.photos/seed/webcam/600/600"],
     stock: 18,
     featured: true,
     category: "Electronics",
@@ -82,9 +76,7 @@ const PRODUCTS = [
     description:
       "Advanced fitness tracking, heart rate monitoring, GPS, and 7-day battery life.",
     price: 349.99,
-    images: [
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
-    ],
+    images: ["https://picsum.photos/seed/smartwatch/600/600"],
     stock: 60,
     featured: true,
     category: "Electronics",
@@ -94,9 +86,7 @@ const PRODUCTS = [
     description:
       "Fast wireless charging compatible with all Qi-enabled devices. Sleek aluminum design.",
     price: 39.99,
-    images: [
-      "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=600",
-    ],
+    images: ["https://picsum.photos/seed/charger/600/600"],
     stock: 120,
     featured: false,
     category: "Electronics",
@@ -106,9 +96,7 @@ const PRODUCTS = [
     description:
       "Ultra-soft 100% organic cotton, relaxed fit, available in 12 colors.",
     price: 34.99,
-    images: [
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600",
-    ],
+    images: ["https://picsum.photos/seed/tshirt/600/600"],
     stock: 200,
     featured: false,
     category: "Clothing",
@@ -118,9 +106,7 @@ const PRODUCTS = [
     description:
       "High-waist compression leggings with moisture-wicking fabric and 4-way stretch.",
     price: 65.99,
-    images: [
-      "https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600",
-    ],
+    images: ["https://picsum.photos/seed/leggings/600/600"],
     stock: 150,
     featured: true,
     category: "Clothing",
@@ -130,7 +116,7 @@ const PRODUCTS = [
     description:
       "Vintage-wash denim jacket with custom embroidery details and a modern slim fit.",
     price: 89.99,
-    images: ["https://images.unsplash.com/photo-1551537482-f2075a1d41f2?w=600"],
+    images: ["https://picsum.photos/seed/denim/600/600"],
     stock: 75,
     featured: false,
     category: "Clothing",
@@ -140,7 +126,7 @@ const PRODUCTS = [
     description:
       "Lightweight foam cushioning with breathable knit upper. Perfect for daily runs.",
     price: 119.99,
-    images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"],
+    images: ["https://picsum.photos/seed/sneakers/600/600"],
     stock: 88,
     featured: true,
     category: "Sports",
@@ -150,9 +136,7 @@ const PRODUCTS = [
     description:
       "Architect-style LED desk lamp with touch dimmer, USB charging port, and warm/cool modes.",
     price: 79.99,
-    images: [
-      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=600",
-    ],
+    images: ["https://picsum.photos/seed/desklamp/600/600"],
     stock: 55,
     featured: false,
     category: "Home & Garden",
@@ -162,9 +146,7 @@ const PRODUCTS = [
     description:
       "Set of 3 handcrafted ceramic planters in natural earth tones, drainage holes included.",
     price: 44.99,
-    images: [
-      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=600",
-    ],
+    images: ["https://picsum.photos/seed/planter/600/600"],
     stock: 90,
     featured: false,
     category: "Home & Garden",
@@ -174,7 +156,7 @@ const PRODUCTS = [
     description:
       "Extra-large 18x12 bamboo cutting board with juice groove and non-slip feet.",
     price: 29.99,
-    images: ["https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600"],
+    images: ["https://picsum.photos/seed/cuttingboard/600/600"],
     stock: 160,
     featured: false,
     category: "Home & Garden",
@@ -184,9 +166,7 @@ const PRODUCTS = [
     description:
       "Non-slip 6mm thick TPE yoga mat with alignment lines and carry strap.",
     price: 49.99,
-    images: [
-      "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?w=600",
-    ],
+    images: ["https://picsum.photos/seed/yogamat/600/600"],
     stock: 110,
     featured: false,
     category: "Sports",
@@ -196,9 +176,7 @@ const PRODUCTS = [
     description:
       "32oz double-wall insulated bottle keeps drinks cold 24hrs or hot 12hrs.",
     price: 35.99,
-    images: [
-      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600",
-    ],
+    images: ["https://picsum.photos/seed/waterbottle/600/600"],
     stock: 250,
     featured: false,
     category: "Sports",
@@ -208,9 +186,7 @@ const PRODUCTS = [
     description:
       "Set of 5 latex-free resistance bands with door anchor, handles and ankle straps.",
     price: 27.99,
-    images: [
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600",
-    ],
+    images: ["https://picsum.photos/seed/resistanceband/600/600"],
     stock: 180,
     featured: false,
     category: "Sports",
@@ -220,7 +196,7 @@ const PRODUCTS = [
     description:
       "Don Norman's classic guide to human-centered design. Essential reading for designers.",
     price: 19.99,
-    images: ["https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600"],
+    images: ["https://picsum.photos/seed/designbook/600/600"],
     stock: 70,
     featured: false,
     category: "Books",
@@ -230,9 +206,7 @@ const PRODUCTS = [
     description:
       "James Clear's #1 NYT bestseller on building good habits and breaking bad ones.",
     price: 16.99,
-    images: [
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=600",
-    ],
+    images: ["https://picsum.photos/seed/atomichabits/600/600"],
     stock: 95,
     featured: true,
     category: "Books",
@@ -242,9 +216,7 @@ const PRODUCTS = [
     description:
       "20% Vitamin C with hyaluronic acid and ferulic acid for brightening and anti-aging.",
     price: 42.99,
-    images: [
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600",
-    ],
+    images: ["https://picsum.photos/seed/vitaminc/600/600"],
     stock: 130,
     featured: true,
     category: "Beauty",
@@ -254,9 +226,7 @@ const PRODUCTS = [
     description:
       "Oil-free daily moisturizer with SPF 30, hyaluronic acid, and niacinamide.",
     price: 38.99,
-    images: [
-      "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600",
-    ],
+    images: ["https://picsum.photos/seed/moisturizer/600/600"],
     stock: 140,
     featured: false,
     category: "Beauty",
@@ -266,9 +236,7 @@ const PRODUCTS = [
     description:
       "360° sound with 20W output, IPX7 waterproof, 15-hour battery, and bass radiator.",
     price: 89.99,
-    images: [
-      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600",
-    ],
+    images: ["https://picsum.photos/seed/speaker/600/600"],
     stock: 8,
     featured: true,
     category: "Electronics",
