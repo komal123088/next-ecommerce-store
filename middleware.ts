@@ -6,24 +6,19 @@ export default withAuth(
     const token = req.nextauth.token;
     const isAdmin = token?.role === "admin";
     const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
-
     if (isAdminRoute && !isAdmin) {
       return NextResponse.redirect(new URL("/", req.url));
     }
-
     return NextResponse.next();
   },
   {
     callbacks: {
       authorized: ({ token, req }) => {
         const { pathname } = req.nextUrl;
-        if (
-          pathname.startsWith("/admin") ||
-          pathname.startsWith("/account") ||
-          pathname.startsWith("/checkout")
-        ) {
-          return !!token;
-        }
+        if (pathname.startsWith("/admin")) return !!token;
+        if (pathname.startsWith("/checkout")) return !!token;
+        if (pathname === "/account") return !!token;
+        if (pathname === "/account/addresses") return !!token;
         return true;
       },
     },
